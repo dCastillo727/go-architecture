@@ -1,13 +1,15 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	restapi "github.com/dCastillo727/go-architecture/internal/driving/rest_api"
+)
 
 func main() {
-	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "¡Hola desde Gin!",
-		})
-	})
-	router.Run(":8080")
+	app := composeApp()
+
+	router := restapi.SetupRouter(app.Services)
+
+	if err := router.Run(":8080"); err != nil {
+		panic(err)
+	}
 }

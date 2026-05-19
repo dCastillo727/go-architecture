@@ -10,7 +10,7 @@ default:
 
 # Run the app locally
 run:
-    go run cmd/main/main.go
+    go run ./cmd/main/
 
 # ⎯⎯⎯⎯⎯ Docker Compose ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
