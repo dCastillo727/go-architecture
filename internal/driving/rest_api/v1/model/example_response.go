@@ -1,4 +1,4 @@
-package api_model
+package restapi
 
 import "github.com/dCastillo727/go-architecture/internal/application/domain/example"
 

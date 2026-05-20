@@ -1,7 +1,5 @@
 # Go Architecture - task runner
 
-set dotenv-load := false
-
 # List all available recipes
 default:
     @just --list
@@ -11,6 +9,18 @@ default:
 # Run the app locally
 run:
     go run ./cmd/main/
+
+# Runs the ddbb locally with docker
+db-up:
+    docker compose -f .docker/compose/local.yml up postgres pgadmin -d
+
+# Stops the ddbb
+db-down:
+    docker compose -f .docker/compose/local.yml down postgres pgadmin
+
+# Removes all data from local ddbb
+db-clean:
+    docker compose -f .docker/compose/local.yml down postgres pgadmin -v
 
 # ⎯⎯⎯⎯⎯ Docker Compose ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 

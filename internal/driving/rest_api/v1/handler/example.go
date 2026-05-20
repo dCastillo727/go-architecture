@@ -1,37 +1,39 @@
-package api_handler
+package restapi
 
 import (
 	"net/http"
 
 	"github.com/dCastillo727/go-architecture/internal/application/port/driving"
-	api_model "github.com/dCastillo727/go-architecture/internal/driving/rest_api/v1/model"
+	restapi "github.com/dCastillo727/go-architecture/internal/driving/rest_api/v1/model"
 	"github.com/gin-gonic/gin"
 )
 
-type ExampleHandler struct {
+type exampleHandler struct {
 	service driving.ExampleService
 }
 
-func NewExampleHandler(service driving.ExampleService) *ExampleHandler {
-	return &ExampleHandler{
+func NewExampleHandler(service driving.ExampleService) *exampleHandler {
+	return &exampleHandler{
 		service: service,
 	}
 }
 
-func (h *ExampleHandler) Register(rg *gin.RouterGroup) {
+func (h *exampleHandler) Register(rg *gin.RouterGroup) {
 	group := rg.Group("/examples")
 	{
 		group.GET("/", h.findAll)
 	}
 }
 
-func (h *ExampleHandler) findAll(c *gin.Context) {
-	examples, err := h.service.FindAll()
+func (h *exampleHandler) findAll(c *gin.Context) {
+	ctx := c.Request.Context()
+
+	examples, err := h.service.FindAll(ctx)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, api_model.NewExampleResponses(examples))
+	c.JSON(http.StatusOK, restapi.NewExampleResponses(examples))
 }

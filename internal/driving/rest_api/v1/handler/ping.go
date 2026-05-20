@@ -1,4 +1,4 @@
-package api_handler
+package restapi
 
 import (
 	"net/http"
@@ -6,21 +6,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type PingHandler struct {
+type pingHandler struct {
 }
 
-func NewPingHandler() *PingHandler {
-	return &PingHandler{}
+func NewPingHandler() *pingHandler {
+	return &pingHandler{}
 }
 
-func (h *PingHandler) Register(rg *gin.RouterGroup) {
+func (h *pingHandler) Register(rg *gin.RouterGroup) {
 	group := rg.Group("/ping")
 	{
 		group.GET("/", h.pong)
 	}
 }
 
-func (h *PingHandler) pong(c *gin.Context) {
+func (h *pingHandler) pong(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "pong",
 	})

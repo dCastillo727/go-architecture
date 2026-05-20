@@ -1,12 +1,12 @@
 package restapi
 
 import (
-	api_handler "github.com/dCastillo727/go-architecture/internal/driving/rest_api/v1/handler"
+	restapi "github.com/dCastillo727/go-architecture/internal/driving/rest_api/v1/handler"
 	"github.com/dCastillo727/go-architecture/internal/registry"
 	"github.com/gin-gonic/gin"
 )
 
-type Handler interface {
+type handler interface {
 	Register(rg *gin.RouterGroup)
 }
 
@@ -23,9 +23,9 @@ func SetupRouter(s registry.Services) *gin.Engine {
 	return router
 }
 
-func setupHandlers(s registry.Services) []Handler {
-	return []Handler{
-		api_handler.NewExampleHandler(s.Example),
-		api_handler.NewPingHandler(),
+func setupHandlers(s registry.Services) []handler {
+	return []handler{
+		restapi.NewExampleHandler(s.Example),
+		restapi.NewPingHandler(),
 	}
 }

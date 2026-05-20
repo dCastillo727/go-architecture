@@ -1,7 +1,11 @@
 package driving
 
-import "github.com/dCastillo727/go-architecture/internal/application/domain/example"
+import (
+	"context"
+
+	"github.com/dCastillo727/go-architecture/internal/application/domain/example"
+)
 
 type ExampleService interface {
-	FindAll() ([]example.Example, error)
+	FindAll(ctx context.Context) ([]example.Example, error)
 }
