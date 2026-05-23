@@ -7,5 +7,6 @@ import (
 )
 
 type ExampleService interface {
-	FindAll(ctx context.Context) ([]example.Example, error)
+	GetAll(ctx context.Context) ([]example.Example, error)
+	GetByID(ctx context.Context, id int64) (*example.Example, error)
 }

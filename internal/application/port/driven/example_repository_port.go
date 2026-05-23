@@ -8,4 +8,5 @@ import (
 
 type ExampleRepositoryPort interface {
 	FindAll(ctx context.Context) ([]example.Example, error)
+	FindByID(ctx context.Context, id int64) (*example.Example, error)
 }

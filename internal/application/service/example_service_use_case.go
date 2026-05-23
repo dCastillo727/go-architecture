@@ -18,6 +18,10 @@ func NewExampleServiceUseCase(repository *registry.Repository) *ExampleServiceUs
 	}
 }
 
-func (s *ExampleServiceUseCase) FindAll(ctx context.Context) ([]example.Example, error) {
+func (s *ExampleServiceUseCase) GetAll(ctx context.Context) ([]example.Example, error) {
 	return s.repository.FindAll(ctx)
+}
+
+func (s *ExampleServiceUseCase) GetByID(ctx context.Context, id int64) (*example.Example, error) {
+	return s.repository.FindByID(ctx, id)
 }
